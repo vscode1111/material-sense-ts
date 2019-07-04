@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
+import { Theme, createStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
   primary: {
     marginRight: theme.spacing.unit * 2
   },
   secondary: {
-    background: theme.palette.secondary['100'],
+    // background: theme.palette.secondary['100'],
+    background: theme.palette.secondary.main,
     color: 'white'
   },
   spaceTop: {
@@ -15,7 +17,11 @@ const styles = theme => ({
   }
 })
 
-class ButtonBar extends Component {
+interface IProps {
+  classes: any
+}
+
+class ButtonBar extends React.Component<IProps> {
 
   render() {
     const { classes } = this.props;

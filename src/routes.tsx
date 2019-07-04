@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Route, HashRouter, Switch } from 'react-router-dom'
 import Dashboard from './components/Dashboard'
 import Wizard from './components/Wizard'
@@ -7,7 +7,7 @@ import Main from './components/Main'
 import Signup from './components/Signup'
 import ScrollToTop from './components/ScrollTop'
 
-export default props => (
+export default () => 
     <HashRouter>
       <ScrollToTop>
         <Switch>
@@ -19,4 +19,3 @@ export default props => (
         </Switch>
       </ScrollToTop>
     </HashRouter>
-  )

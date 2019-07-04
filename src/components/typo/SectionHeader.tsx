@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
+import { Theme, createStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   sectionContainer: {
     marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 4
@@ -13,7 +14,13 @@ const styles = theme => ({
   }
 });
 
-class SectionHeader extends Component {
+interface IProps {
+  classes: any;
+  title: string;
+  subtitle: string;
+}
+
+class SectionHeader extends React.Component<IProps> {
   render() {
     const { classes, title, subtitle} = this.props;
     return (

@@ -1,4 +1,4 @@
-import React,  { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { withRouter } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,6 +21,7 @@ import DoneIcon from '@material-ui/icons/Done';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
 import Back from './common/Back';
+import { Theme, createStyles } from '@material-ui/core';
 
 const backgroundShape = require('../images/shape.svg');
 
@@ -29,10 +30,11 @@ const logo = require('../images/logo.svg');
 const numeral = require('numeral');
 numeral.defaultFormat('0');
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.secondary['A100'],
+    // backgroundColor: theme.palette.secondary['A100'],
+    backgroundColor: theme.palette.secondary.main,
     overflow: 'hidden',
     background: `url(${backgroundShape}) no-repeat`,
     backgroundSize: 'cover',
@@ -69,7 +71,8 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   button: {
-    backgroundColor: theme.palette.primary['A100']
+    // backgroundColor: theme.palette.primary['A100']
+    backgroundColor: theme.palette.primary.main
   },
   backButton: {
     marginRight: theme.spacing.unit,
@@ -108,9 +111,22 @@ const getSteps = () => {
   ];
 }
 
-class Signup extends Component {
+interface IProps {
+  classes: any;
+  history: any;
+}
 
-  state = {
+interface IState {
+  activeStep?: number;
+  receivingAccount?: string;
+  termsChecked?: boolean;
+  loading?: boolean;
+  labelWidth?: number;
+}
+
+class Signup extends React.Component<IProps, IState> {
+
+  state: IState = {
     activeStep: 0,
     receivingAccount: '',
     termsChecked: false,
@@ -124,7 +140,7 @@ class Signup extends Component {
 
   handleNext = () => {
     this.setState(state => ({
-      activeStep: state.activeStep + 1,
+      activeStep: state.activeStep || 0 + 1,
     }));
     if(this.state.activeStep === 2) {
       setTimeout(() => this.props.history.push('/dashboard'), 5000)
@@ -133,7 +149,7 @@ class Signup extends Component {
 
   handleBack = () => {
     this.setState(state => ({
-      activeStep: state.activeStep - 1,
+      activeStep: state.activeStep || 0 - 1,
     }));
   };
 
@@ -143,11 +159,11 @@ class Signup extends Component {
     });
   };
 
-  handleChange = event => {
+  handleChange = (event: any) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleTerms = event => {
+  handleTerms = (event: any) => {
     this.setState({ termsChecked: event.target.checked });
   };
 
@@ -215,7 +231,7 @@ class Signup extends Component {
                               onChange={this.handleChange}
                               input={
                                 <OutlinedInput
-                                  labelWidth={this.state.labelWidth}
+                                  labelWidth={this.state.labelWidth || 14}
                                   name="receivingAccount"
                                 />
                               }
@@ -328,7 +344,8 @@ class Signup extends Component {
                        </Button>
                      ) : (
                        <Button
-                       disabled={activeStep === 0}
+                       // disabled={activeStep === 0}
+                       disabled={true}
                        onClick={this.handleBack}
                        className={classes.backButton}
                        size='large'
@@ -341,8 +358,8 @@ class Signup extends Component {
                        color="primary"
                        onClick={this.handleNext}
                        size='large'
-                       style={this.state.receivingAccount.length ? {background: classes.button, color: 'white'} : {}}
-                       disabled={!this.state.receivingAccount.length}
+                       style={this.state.receivingAccount && this.state.receivingAccount.length ? {background: classes.button, color: 'white'} : {}}
+                       disabled={this.state.receivingAccount && !this.state.receivingAccount.length || true}
                      >
                        {this.stepActions()}
                      </Button>

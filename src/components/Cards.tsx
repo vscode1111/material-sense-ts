@@ -1,16 +1,17 @@
-import React,  { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import CardItem from './cards/CardItem';
 import Topbar from './Topbar';
 import SectionHeader from './typo/SectionHeader';
+import { Theme, createStyles } from '@material-ui/core';
 const backgroundShape = require('../images/shape.svg');
 
-const styles = theme => ({
-  root: {
+const styles = (theme: Theme) => createStyles({  root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.grey['A500'],
+    // backgroundColor: theme.palette.grey['A500'],
+    backgroundColor: theme.palette.grey.A400,
     overflow: 'hidden',
     background: `url(${backgroundShape}) no-repeat`,
     backgroundSize: 'cover',
@@ -24,7 +25,12 @@ const styles = theme => ({
   }
 })
 
-class Cards extends Component {
+interface IProps {
+  classes: any;
+  location: any;
+}
+
+class Cards extends React.Component<IProps> {
 
   render() {
     const { classes } = this.props;

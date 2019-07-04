@@ -1,4 +1,4 @@
-import React,  { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { withRouter, Link } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,13 +14,14 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import Loading from './common/Loading';
 
 import Topbar from './Topbar';
+import { Theme, createStyles } from '@material-ui/core';
 
 const numeral = require('numeral');
 numeral.defaultFormat('0,000');
 
 const backgroundShape = require('../images/shape.svg');
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.grey['100'],
@@ -111,9 +112,26 @@ const styles = theme => ({
 
 const monthRange = Months;
 
-class Dashboard extends Component {
+interface IProps {
+  classes: any;
+  location: any;
+}
 
-  state = {
+interface IState {
+  loading: boolean;
+  amount: number;
+  period: number;
+  start: number;
+  monthlyInterest: number,
+  totalInterest: number,
+  monthlyPayment: number,
+  totalPayment: number,
+  data: any[]
+}
+
+class Dashboard extends React.Component<IProps, IState> {
+
+  state:IState = {
     loading: true,
     amount: 15000,
     period: 3,
@@ -148,17 +166,17 @@ class Dashboard extends Component {
     this.updateValues();
   }
 
-  handleChangeAmount = (event, value) => {
+  handleChangeAmount = (event: any, value: any) => {
     this.setState({amount: value, loading: false});
     this.updateValues();
   }
 
-  handleChangePeriod = (event, value) => {
+  handleChangePeriod = (event: any, value: any) => {
     this.setState({period: value, loading: false});
     this.updateValues();
   }
 
-  handleChangeStart = (event, value) => {
+  handleChangeStart = (event: any, value: any) => {
     this.setState({start: value, loading: false});
     this.updateValues();
   }

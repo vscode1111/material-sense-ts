@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { withRouter } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,7 +16,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Back from './common/Back'
+import Back from './common/Back';
+import { Theme, createStyles } from '@material-ui/core';
 
 const qs = require('query-string');
 const backgroundShape = require('../images/shape.svg');
@@ -24,10 +25,11 @@ const backgroundShape = require('../images/shape.svg');
 const numeral = require('numeral');
 numeral.defaultFormat('0,000');
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.primary['A100'],
+    // backgroundColor: theme.palette.primary['A100'],
+    backgroundColor: theme.palette.primary.main,
     overflow: 'hidden',
     background: `url(${backgroundShape}) no-repeat`,
     backgroundSize: 'cover',
@@ -103,9 +105,23 @@ const getSteps = () => {
   ];
 }
 
-class Wizard extends Component {
+interface IProps {
+  classes: any;
+  location: any;
+  history: any;
+}
 
-  state = {
+interface IState {
+  activeStep?: number;
+  receivingAccount?: string;
+  repaimentAccount?: string;
+  termsChecked?: boolean;
+  labelWidth?: number;
+}
+
+class Wizard extends React.Component<IProps, IState> {
+
+  state: IState = {
     activeStep: 0,
     receivingAccount: 'Home Account',
     repaimentAccount: 'Saving Account',
@@ -114,18 +130,17 @@ class Wizard extends Component {
   }
 
   componentDidMount() {
-
   }
 
   handleNext = () => {
     this.setState(state => ({
-      activeStep: state.activeStep + 1,
+      activeStep: state.activeStep || 0 + 1,
     }));
   };
 
   handleBack = () => {
     this.setState(state => ({
-      activeStep: state.activeStep - 1,
+      activeStep: state.activeStep || 0 - 1,
     }));
   };
 
@@ -135,11 +150,11 @@ class Wizard extends Component {
     });
   };
 
-  handleChange = event => {
+  handleChange = (event: any) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleTerms = event => {
+  handleTerms = (event: any) => {
     this.setState({ termsChecked: event.target.checked });
   };
 
@@ -156,7 +171,7 @@ class Wizard extends Component {
     return 'Next';
   }
 
-  goToDashboard = event => {
+  goToDashboard = (event: any) => {
     const queryString = this.props.location.search
 
     this.props.history.push({
@@ -262,7 +277,7 @@ class Wizard extends Component {
                               onChange={this.handleChange}
                               input={
                                 <OutlinedInput
-                                  labelWidth={this.state.labelWidth}
+                                  labelWidth={this.state.labelWidth || 14}
                                   name="receivingAccount"
                                 />
                               }
@@ -375,7 +390,7 @@ class Wizard extends Component {
                               onChange={this.handleChange}
                               input={
                                 <OutlinedInput
-                                  labelWidth={this.state.labelWidth}
+                                  labelWidth={this.state.labelWidth || 14}
                                   name="repaimentAccount"
                                 />
                               }

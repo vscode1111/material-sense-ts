@@ -1,8 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { Theme, createStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   loadingMessage: {
     position: 'absolute',
     top: '40%',
@@ -10,7 +11,12 @@ const styles = theme => ({
   }
 });
 
-function Loading(props) {
+interface IProps {
+  classes: any;
+  loading: any;
+}
+
+function Loading(props: IProps) {
   const { classes, loading } = props;
   return (
     <div style={loading ? { display: 'block' } : { display: 'none' }} className={classes.loadingMessage}>

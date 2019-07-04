@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Theme, createStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
   container: {
     maxWidth: 600,
     flexGrow: 1,
@@ -19,7 +20,13 @@ const styles = theme => ({
   }
 });
 
-class BaseDialog extends Component {
+interface IProps {
+  classes: any;
+  open: any;
+  onClose: any;
+}
+
+class BaseDialog extends React.Component<IProps> {
   render() {
     const { classes, open, onClose } = this.props;
     return (

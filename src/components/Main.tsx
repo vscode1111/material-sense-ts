@@ -1,4 +1,4 @@
-import React,  { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { withRouter } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,12 +8,13 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import InstructionDialog from './dialogs/InstructionDialog';
 import SwipeDialog from './dialogs/SwipeDialog';
+import { Theme, createStyles } from '@material-ui/core';
 
 import Topbar from './Topbar';
 
 const backgroundShape = require('../images/shape.svg');
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.grey['100'],
@@ -90,28 +91,37 @@ const styles = theme => ({
   }
 });
 
-class Main extends Component {
+interface IProps {
+  classes: any;
+  location: any;
+}
 
-  state = {
+interface IState {
+  learnMoredialog: boolean;
+  getStartedDialog: boolean;
+}
+
+class Main extends React.Component<IProps, IState> {
+  state: IState = {
     learnMoredialog: false,
     getStartedDialog: false
   };
 
   componentDidMount() {}
 
-  openDialog = (event) => {
+  openDialog = (event: any) => {
     this.setState({learnMoredialog: true});
   }
 
-  dialogClose = (event) => {
+  dialogClose = (event: any) => {
     this.setState({learnMoredialog: false});
   }
 
-  openGetStartedDialog = (event) => {
+  openGetStartedDialog = (event: any) => {
     this.setState({getStartedDialog: true});
   }
 
-  closeGetStartedDialog = (event) => {
+  closeGetStartedDialog = (event: any) => {
     this.setState({getStartedDialog: false});
   }
 

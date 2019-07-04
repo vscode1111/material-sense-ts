@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import DescriptionIcon from '@material-ui/icons/Description';
 import ButtonBar from '../buttons/ButtonBar';
+import { Theme, createStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
   paper: {
     padding: theme.spacing.unit * 3,
     textAlign: 'left',
@@ -70,7 +71,11 @@ const styles = theme => ({
   }
 })
 
-class CardItem extends Component {
+interface IProps {
+  classes: any;
+}
+
+class CardItem extends React.Component<IProps> {
 
   render() {
     const { classes } = this.props;

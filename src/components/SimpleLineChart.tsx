@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ResponsiveContainer from 'recharts/lib/component/ResponsiveContainer';
 import BarChart from 'recharts/lib/chart/BarChart';
 import Bar from 'recharts/lib/cartesian/Bar';
@@ -6,7 +6,12 @@ import XAxis from 'recharts/lib/cartesian/XAxis';
 import Tooltip from 'recharts/lib/component/Tooltip';
 import { withTheme } from '@material-ui/core/styles';
 
-function SimpleLineChart(props) {
+interface IProps {
+  theme: any; 
+  data: any;
+}
+
+function SimpleLineChart(props: IProps) {
   const { theme, data } = props;
   return (
     <ResponsiveContainer width="99%" height={225}>

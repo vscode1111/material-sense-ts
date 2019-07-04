@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
@@ -7,6 +7,7 @@ import BaseDialog from './BaseDialog';
 import SwipeableViews from 'react-swipeable-views';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { Theme, createStyles } from '@material-ui/core';
 
 const logo = require('../../images/logo.svg');
 
@@ -45,7 +46,7 @@ const tutorialSteps = [
   },
 ];
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   container: {
     maxWidth: 600,
     flexGrow: 1,
@@ -65,9 +66,19 @@ const styles = theme => ({
   }
 });
 
-class SwipeDialog extends Component {
+interface IProps {
+  classes: any;
+  open: any;
+  onClose: any;
+}
 
-  state = {
+interface IState {
+  activeStep: number;
+}
+
+class SwipeDialog extends React.Component<IProps, IState> {
+
+  state: IState = {
     activeStep: 0
   }
 
@@ -83,7 +94,7 @@ class SwipeDialog extends Component {
     }));
   };
 
-  handleStepChange = activeStep => {
+  handleStepChange = (activeStep: number) => {
     this.setState({ activeStep });
   };
 

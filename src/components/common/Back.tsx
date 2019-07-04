@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import Typography from '@material-ui/core/Typography';
 import { Link, withRouter } from 'react-router-dom';
+import { Theme, createStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   link: {
     textDecoration: 'none',
     color: 'inherit'
@@ -15,7 +16,11 @@ const styles = theme => ({
   }
 });
 
-class Back extends Component {
+interface IProps {
+  classes: any;
+}
+
+class Back extends React.Component<IProps> {
   render() {
     const { classes } = this.props;
     return (

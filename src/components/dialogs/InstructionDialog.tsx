@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import BaseDialog from './BaseDialog';
+import { Theme, createStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   container: {
     maxWidth: 600,
     flexGrow: 1,
@@ -19,7 +20,7 @@ const styles = theme => ({
   }
 });
 
-class InstructionDialog extends Component {
+class InstructionDialog extends React.Component {
   render() {
     const { classes } = this.props;
     return (

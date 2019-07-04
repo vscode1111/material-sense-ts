@@ -1,4 +1,4 @@
-import React,  { Component } from 'react';
+import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link, withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
@@ -14,10 +14,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Menu from './Menu';
+import { Theme, createStyles } from '@material-ui/core';
 
 const logo = require('../images/logo.svg');
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({  
   appBar: {
     position: 'relative',
     boxShadow: 'none',
@@ -78,22 +79,28 @@ const styles = theme => ({
   }
 })
 
-class Topbar extends Component {
+interface IProps {
+  currentPath: string;
+  classes: any;
+  noTabs: any;
+  location: any;
+}
 
+class Topbar extends React.Component<IProps> {
   state = {
     value: 0,
     menuDrawer: false
   };
 
-  handleChange = (event, value) => {
+  handleChange = (event: any, value: any) => {
     this.setState({ value });
   };
 
-  mobileMenuOpen = (event) => {
+  mobileMenuOpen = (event: any) => {
     this.setState({ menuDrawer: true });
   }
 
-  mobileMenuClose = (event) => {
+  mobileMenuClose = (event: any) => {
     this.setState({ menuDrawer: false });
   }
 
@@ -117,7 +124,7 @@ class Topbar extends Component {
     if(this.props.currentPath === '/cards') {
       return 4
     }
-
+    return 0;
   }
 
   render() {
