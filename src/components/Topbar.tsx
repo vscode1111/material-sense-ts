@@ -1,6 +1,6 @@
 import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -80,13 +80,13 @@ const styles = (theme: Theme) => createStyles({
 })
 
 interface IProps {
-  currentPath: string;
-  classes: any;
-  noTabs: any;
-  location: any;
+  currentPath?: string;
+  classes?: any;
+  noTabs?: any;
+  location?: any;
 }
 
-class Topbar extends React.Component<IProps> {
+class Topbar extends React.Component<IProps & RouteComponentProps> {
   state = {
     value: 0,
     menuDrawer: false
@@ -161,7 +161,7 @@ class Topbar extends React.Component<IProps> {
                           <AppBar title="Menu" />
                           <List>
                             {Menu.map((item, index) => (
-                              <ListItem component={Link} to={{pathname: item.pathname, search: this.props.location.search}} button key={item.label}>
+                              <ListItem component={() => <Link to={{pathname: item.pathname, search: this.props.location.search}} />} button key={item.label}>
                                 <ListItemText primary={item.label} />
                               </ListItem>
                             ))}
@@ -174,7 +174,7 @@ class Topbar extends React.Component<IProps> {
                           onChange={this.handleChange}
                         >
                           {Menu.map((item, index) => (
-                            <Tab key={index} component={Link} to={{pathname: item.pathname, search: this.props.location.search}} classes={{root: classes.tabItem}} label={item.label} />
+                            <Tab key={index} component={() => <Link to={{pathname: item.pathname, search: this.props.location.search}} />}  classes={{root: classes.tabItem}} label={item.label} />
                           ))}
                         </Tabs>
                       </div>

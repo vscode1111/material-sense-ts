@@ -1,3 +1,4 @@
+/*
 import * as React from 'react';
 import ResponsiveContainer from 'recharts/lib/component/ResponsiveContainer';
 import BarChart from 'recharts/lib/chart/BarChart';
@@ -26,3 +27,4 @@ function SimpleLineChart(props: IProps) {
 }
 
 export default withTheme()(SimpleLineChart);
+*/

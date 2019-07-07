@@ -1,6 +1,6 @@
 import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -101,7 +101,7 @@ interface IState {
   getStartedDialog: boolean;
 }
 
-class Main extends React.Component<IProps, IState> {
+class Main extends React.Component<IProps & RouteComponentProps, IState> {
   state: IState = {
     learnMoredialog: false,
     getStartedDialog: false

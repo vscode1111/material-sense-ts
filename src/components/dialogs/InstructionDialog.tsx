@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -20,7 +20,13 @@ const styles = (theme: Theme) => createStyles({
   }
 });
 
-class InstructionDialog extends React.Component {
+interface IProps {
+  classes?: any;
+  open?: boolean;
+  onClose?: (event: any) => void;  
+}
+
+class InstructionDialog extends React.Component<IProps & RouteComponentProps> {
   render() {
     const { classes } = this.props;
     return (
@@ -30,10 +36,12 @@ class InstructionDialog extends React.Component {
             This is a sample introduction
           </Typography>
         </div>
-        <Button component={Link} to='/dashboard' className={classes.bottomMargin} variant='contained' onClick={this.handleClose} color="primary" autoFocus>
+        {/* <Button component={() => <Link to='/dashboard' />} className={classes.bottomMargin} variant='contained' onClick={this.handleClose} color="primary" autoFocus> */}
+        <Button component={() => <Link to='/dashboard' />} className={classes.bottomMargin} variant='contained' color="primary" autoFocus>
           Getting started
         </Button>
-        <Button component={Link} to='/dashboard' variant='outlined' onClick={this.handleClose} color="primary" autoFocus>
+        {/* <Button component={() => <Link to='/dashboard' />} variant='outlined' onClick={this.handleClose} color="primary" autoFocus> */}
+        <Button component={() => <Link to='/dashboard' />} variant='outlined' color="primary" autoFocus>
           Dashboard
         </Button>
       </BaseDialog>

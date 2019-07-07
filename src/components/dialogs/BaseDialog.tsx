@@ -21,9 +21,9 @@ const styles = (theme: Theme) => createStyles({
 });
 
 interface IProps {
-  classes: any;
-  open: any;
-  onClose: any;
+  classes?: any;
+  open?: any;
+  onClose?: any;
 }
 
 class BaseDialog extends React.Component<IProps> {

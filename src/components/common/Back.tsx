@@ -2,7 +2,7 @@ import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import Typography from '@material-ui/core/Typography';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import { Theme, createStyles } from '@material-ui/core';
 
 const styles = (theme: Theme) => createStyles({  
@@ -20,7 +20,7 @@ interface IProps {
   classes: any;
 }
 
-class Back extends React.Component<IProps> {
+class Back extends React.Component<IProps & RouteComponentProps> {
   render() {
     const { classes } = this.props;
     return (

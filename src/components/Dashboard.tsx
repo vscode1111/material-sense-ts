@@ -1,6 +1,6 @@
 import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/lab/Slider';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import SimpleLineChart from './SimpleLineChart';
+// import SimpleLineChart from './SimpleLineChart';
 import Months from './common/Months';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import Loading from './common/Loading';
@@ -129,7 +129,7 @@ interface IState {
   data: any[]
 }
 
-class Dashboard extends React.Component<IProps, IState> {
+class Dashboard extends React.Component<IProps & RouteComponentProps, IState> {
 
   state:IState = {
     loading: true,
@@ -355,7 +355,7 @@ class Dashboard extends React.Component<IProps, IState> {
                         </div>
                       </div>
                       <div >
-                        <SimpleLineChart data={data} />
+                        {/* <SimpleLineChart data={data} /> */}
                       </div>
                     </div>
                   </Paper>
@@ -374,10 +374,10 @@ class Dashboard extends React.Component<IProps, IState> {
                       </Typography>
                     </div>
                     <div className={classes.buttonBar}>
-                      <Button to={{ pathname: "/dashboard", search: `?type=save` }} component={Link} variant="outlined" className={classes.actionButtom}>
+                      <Button component={() => <Link to={{ pathname: "/dashboard", search: `?type=save` }} />} variant="outlined" className={classes.actionButtom}>
                         Save
                       </Button>
-                      <Button to={{ pathname: "/dashboard", search: `?type=apply` }} component={Link} color='primary' variant="contained" className={classes.actionButtom}>
+                      <Button component={() => <Link to={{ pathname: "/dashboard", search: `?type=apply` }} />} color='primary' variant="contained" className={classes.actionButtom}>
                         Apply
                       </Button>
                     </div>

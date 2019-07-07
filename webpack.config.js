@@ -91,8 +91,8 @@ module.exports = (env, argv) => {
             // .ts, .tsx
             {
                test: /\.(ts|tsx)$/,
-               // loader: 'awesome-typescript-loader',
-               loader: 'ts-loader',
+               loader: 'awesome-typescript-loader',
+               // loader: 'ts-loader',
             },
             // .css
             // {
@@ -121,6 +121,10 @@ module.exports = (env, argv) => {
                   },
                ],
             },
+            {
+               test: /\.svg$/,
+               loader: 'svg-inline-loader'
+            }
             // {
             //    test: /\.(less)$/,
             //    use: [

@@ -10,6 +10,7 @@
       "removeComments": true,
       "noImplicitReturns": true,
       //"noUnusedLocals": true,
+      "skipLibCheck": true,
       "strict": true,
       "outDir": "build",
       "lib": [

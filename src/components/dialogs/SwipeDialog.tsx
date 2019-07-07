@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import BaseDialog from './BaseDialog';
-import SwipeableViews from 'react-swipeable-views';
+// import SwipeableViews from 'react-swipeable-views';
 import MobileStepper from '@material-ui/core/MobileStepper';
-import { autoPlay } from 'react-swipeable-views-utils';
+// import { autoPlay } from 'react-swipeable-views-utils';
 import { Theme, createStyles } from '@material-ui/core';
 
 const logo = require('../../images/logo.svg');
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
   {
@@ -76,7 +76,7 @@ interface IState {
   activeStep: number;
 }
 
-class SwipeDialog extends React.Component<IProps, IState> {
+class SwipeDialog extends React.Component<IProps & RouteComponentProps, IState> {
 
   state: IState = {
     activeStep: 0
@@ -109,7 +109,7 @@ class SwipeDialog extends React.Component<IProps, IState> {
             <img width={100} src={logo} alt="" />
           </div>
           <div>
-            <AutoPlaySwipeableViews
+            {/* <AutoPlaySwipeableViews
               axis='x'
               index={activeStep}
               onChangeIndex={this.handleStepChange}
@@ -122,7 +122,7 @@ class SwipeDialog extends React.Component<IProps, IState> {
                   ) : null}
                 </div>
               ))}
-            </AutoPlaySwipeableViews>
+            </AutoPlaySwipeableViews> */}
             <MobileStepper
               steps={maxSteps}
               position="static"
@@ -149,7 +149,8 @@ class SwipeDialog extends React.Component<IProps, IState> {
             </Typography>
           </div>
           <div>
-            <Button component={Link} to='/dashboard' variant='contained' onClick={this.handleClose} color="primary" autoFocus>
+            {/* <Button component={() => <Link to='/dashboard'/>}  variant='contained' onClick={this.handleClose} color="primary" autoFocus> */}
+            <Button component={() => <Link to='/dashboard'/>}  variant='contained' color="primary" autoFocus>
                 Getting started
             </Button>
           </div>

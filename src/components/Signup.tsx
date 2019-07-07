@@ -1,6 +1,6 @@
 import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { withRouter } from 'react-router-dom'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -124,7 +124,7 @@ interface IState {
   labelWidth?: number;
 }
 
-class Signup extends React.Component<IProps, IState> {
+class Signup extends React.Component<IProps & RouteComponentProps, IState> {
 
   state: IState = {
     activeStep: 0,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Theme, createStyles } from '@material-ui/core';
 
 const styles = (theme: Theme) => createStyles({  
@@ -20,7 +20,7 @@ interface IProps {
   subtitle: string;
 }
 
-class SectionHeader extends React.Component<IProps> {
+class SectionHeader extends React.Component<IProps & RouteComponentProps> {
   render() {
     const { classes, title, subtitle} = this.props;
     return (
