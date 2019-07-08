@@ -40,7 +40,7 @@ const configProd = {
 const configDev = {
    app: [
       'react-dev-utils/webpackHotDevClient',
-      `${sourcePath}/app/index.tsx`
+      `${sourcePath}/index.tsx`
    ],
    appFilename: 'app-debug.js',
    vendorFilename: 'vendor-debug.js',
@@ -91,8 +91,8 @@ module.exports = (env, argv) => {
             // .ts, .tsx
             {
                test: /\.(ts|tsx)$/,
-               loader: 'awesome-typescript-loader',
-               // loader: 'ts-loader',
+               // loader: 'awesome-typescript-loader',
+               loader: 'ts-loader',
             },
             // .css
             // {
@@ -175,10 +175,10 @@ module.exports = (env, argv) => {
                template: `./${srcDir}/index.html`,
                filename: 'index.html',
             }),
-            new webpack.ProvidePlugin({
-               React: 'react',
-               Promise: 'es6-promise' //add Promises for IE !!! 
-            }),
+            // new webpack.ProvidePlugin({
+            //    React: 'react',
+            //    Promise: 'es6-promise' //add Promises for IE !!! 
+            // }),
             new TimingCompilationPlugin(),
          );
          if (isProduction) {
